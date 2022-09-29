@@ -38,6 +38,7 @@ def do_deploy(archive_path):
     run(cmd)
     cmd = "ln -s " + releases_plus_file + "/ /data/web_static/current"
     run(cmd)
+    print("\n=== done deploying ===\n")
     return True
 
 
@@ -52,7 +53,7 @@ def do_pack():
     cmd = "tar -cvzf " + path + " web_static"
     res = local(cmd)
     if res.succeeded:
-        print(res.succeeded)
+        print("\n=== archive formed ===\n")
         return path
 
 
