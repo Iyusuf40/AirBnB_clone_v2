@@ -17,4 +17,5 @@ def do_pack():
     cmd = "tar -cvzf " + path + " web_static"
     res = local(cmd)
     if res.succeeded:
+        print(res.succeeded)
         return path
