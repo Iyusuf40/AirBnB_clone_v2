@@ -59,4 +59,7 @@ def do_pack():
 def deploy():
     """deploys most recent version"""
     path = do_pack()
-    do_deploy(path)
+    if not path:
+        return False
+    res = do_deploy(path)
+    return res
