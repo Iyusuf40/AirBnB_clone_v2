@@ -84,8 +84,8 @@ def clean_remote(number=0):
     res.remove("test")
     print("res = ", res)
     lst = []
-    for i in res:
-        lst.append(i.split("_")[2])
+    for item in res:
+        lst.append(item.split("_")[2])
     lst.sort(reverse=True)
     print(lst)
     number = int(number)
@@ -108,8 +108,8 @@ def clean_local(number=0):
     res = local("ls versions", capture=True)
     lst = []
     res = res.split("\n")
-    for i in res:
-        lst.append(i.split("_")[2].split(".")[0])
+    for item in res:
+        lst.append(item.split("_")[2].split(".")[0])
     lst.sort(reverse=True)
     print(lst)
     number = int(number)
