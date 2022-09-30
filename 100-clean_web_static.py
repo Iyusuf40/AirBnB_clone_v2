@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""a simple fab file to create an archive file"""
+'''a simple fab file to create an archive file'''
 
 
 from fabric.api import *
@@ -11,7 +11,7 @@ env.hosts = ["100.25.39.211", "100.26.180.73"]
 
 
 def do_deploy(archive_path):
-    """deploys files to servers in env.hosts"""
+    '''deploys files to servers in env.hosts'''
     if not os.path.exists(archive_path):
         return False
     res = put(archive_path, "/tmp/")
@@ -43,7 +43,7 @@ def do_deploy(archive_path):
 
 
 def do_pack():
-    """creates an archive file"""
+    '''creates an archive file'''
     local("mkdir -p versions")
     name = "web_static_{}{}{}{}{}{}.tgz"
     date_obj = datetime.now()
@@ -58,7 +58,7 @@ def do_pack():
 
 
 def deploy():
-    """deploys most recent version"""
+    '''deploys most recent version'''
     path = do_pack()
     if not path:
         return False
@@ -67,7 +67,7 @@ def deploy():
 
 
 def clean_remote(number=0):
-    """removes old directories"""
+    '''removes old directories'''
     res = run("ls /data/web_static/releases")
     res = res.stdout
     delimeters = "\t\n\r"
@@ -104,7 +104,7 @@ def clean_remote(number=0):
 
 
 def clean_local(number=0):
-    """cleans local archive"""
+    '''cleans local archive'''
     res = local("ls versions", capture=True)
     lst = []
     res = res.split("\n")
@@ -128,7 +128,7 @@ def clean_local(number=0):
 
 
 def do_clean(number=0):
-    """deletes files older than first numbers"""
+    '''deletes files older than first numbers'''
     print("\n====== local clean starts ======\n")
     clean_local(number)
     print("\n====== local clean ends ======\n")
