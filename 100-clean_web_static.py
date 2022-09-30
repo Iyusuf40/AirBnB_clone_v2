@@ -128,7 +128,8 @@ def clean_local(number=0):
 
 
 def do_clean(number=0):
-    '''deletes files older than first numbers'''
+    '''deletes files older than first numbers, on local machine and
+    on remote servers'''
     print("\n====== local clean starts ======\n")
     clean_local(number)
     print("\n====== local clean ends ======\n")
