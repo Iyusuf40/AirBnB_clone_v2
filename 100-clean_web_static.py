@@ -135,3 +135,4 @@ def do_clean(number=0):
     print("\n====== remote clean starts ======\n")
     clean_remote(number)
     print("\n====== remote clean ends ======\n")
+    return True
