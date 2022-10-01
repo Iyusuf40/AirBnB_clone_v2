@@ -29,4 +29,3 @@ class State(BaseModel, Base):
         def cities(self):
             """returns get_cities"""
             return self.get_cities()
-

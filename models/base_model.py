@@ -34,8 +34,10 @@ class BaseModel:
             if storage_type == 'db':
                 self.id = str(uuid.uuid4())
             if 'updated_at' in kwargs:
-                kwargs['updated_at'] = datetime.fromisoformat(kwargs['updated_at'])
-                kwargs['created_at'] = datetime.fromisoformat(kwargs['created_at'])
+                kwargs['updated_at'] = datetime\
+                        .fromisoformat(kwargs['updated_at'])
+                kwargs['created_at'] = datetime\
+                    .fromisoformat(kwargs['created_at'])
             if '__class__' in kwargs:
                 del kwargs['__class__']
             self.__dict__.update(kwargs)

@@ -9,9 +9,9 @@ from models import storage_type
 
 if storage_type == 'db':
     place_amenity = Table('place_amenity', Base.metadata,
-                      Column('place_id', ForeignKey('places.id')),
-                      Column('amenity_id', ForeignKey('amenities.id'))
-                      )
+                          Column('place_id', ForeignKey('places.id')),
+                          Column('amenity_id', ForeignKey('amenities.id'))
+                          )
 
 
 class Place(BaseModel, Base):
