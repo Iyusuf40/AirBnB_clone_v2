@@ -26,7 +26,11 @@ def do_deploy(archive_path):
     run(cmd)
     releases = "/data/web_static/releases/"
     releases_plus_file = releases + file_name
-    cmd = "mv " + releases_plus_file + "/web_static/* " + releases_plus_file
+    cmd = "rm -rf " + releases_plus_file + "/styles"
+    run(cmd)
+    cmd = "rm -rf " + releases_plus_file + "/images"
+    run(cmd)
+    cmd = "mv -f " + releases_plus_file + "/web_static/* " + releases_plus_file
     run(cmd)
     cmd = "rm -rf " + releases_plus_file + "/web_static"
     run(cmd)

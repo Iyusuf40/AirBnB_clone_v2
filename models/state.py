@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+from models import storage_type
 
 
 class State(BaseModel, Base):
@@ -22,3 +23,10 @@ class State(BaseModel, Base):
             if obj.state_id == self.id:
                 lst.append(obj)
         return lst
+
+    if storage_type != 'db':
+        @property
+        def cities(self):
+            """returns get_cities"""
+            return self.get_cities()
+

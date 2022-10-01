@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-""" Place Module for HBNB project, new storage engine = SQLAlchemy"""
+""" Place Module for HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import Integer, Column, String,\
     ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
+from models import storage_type
 
 
-place_amenity = Table('place_amenity', Base.metadata,
+if storage_type == 'db':
+    place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id', ForeignKey('places.id')),
                       Column('amenity_id', ForeignKey('amenities.id'))
                       )

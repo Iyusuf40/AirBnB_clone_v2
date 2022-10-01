@@ -4,19 +4,24 @@ import uuid
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+from models import storage_type
 
-
-Base = declarative_base()
+if storage_type == 'db':
+    Base = declarative_base()
+else:
+    class Base:
+        pass
 
 
 class BaseModel:
     """A base class for all hbnb models"""
 
-    id = Column(String(60), primary_key=True)
-    created_at = Column(DateTime(), default=datetime.utcnow(),
-                        nullable=False)
-    updated_at = Column(DateTime(), default=datetime.utcnow(),
-                        nullable=False)
+    if storage_type == 'db':
+        id = Column(String(60), primary_key=True)
+        created_at = Column(DateTime(), default=datetime.utcnow(),
+                            nullable=False)
+        updated_at = Column(DateTime(), default=datetime.utcnow(),
+                            nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
@@ -29,12 +34,8 @@ class BaseModel:
             if storage_type == 'db':
                 self.id = str(uuid.uuid4())
             if 'updated_at' in kwargs:
-                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                         '%Y-%m-%dT%H:\
-                                                                 %M:%S.%f')
-                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                         '%Y-%m-%dT%H:%M:\
-                                                                 %S.%f')
+                kwargs['updated_at'] = datetime.fromisoformat(kwargs['updated_at'])
+                kwargs['created_at'] = datetime.fromisoformat(kwargs['created_at'])
             if '__class__' in kwargs:
                 del kwargs['__class__']
             self.__dict__.update(kwargs)

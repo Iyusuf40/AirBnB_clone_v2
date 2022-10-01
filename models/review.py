@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Review module for the HBNB project, new storage engine = SQLAlchemy"""
+""" Review module for the HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
