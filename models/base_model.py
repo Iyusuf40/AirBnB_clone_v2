@@ -33,11 +33,18 @@ class BaseModel:
         else:
             if storage_type == 'db':
                 self.id = str(uuid.uuid4())
+            else:
+                if 'id' not in kwargs:
+                    kwargs['id'] = str(uuid.uuid4())
             if 'updated_at' in kwargs:
                 kwargs['updated_at'] = datetime\
                         .fromisoformat(kwargs['updated_at'])
                 kwargs['created_at'] = datetime\
                     .fromisoformat(kwargs['created_at'])
+            else:
+                if storage_type != 'db':
+                    kwargs['updated_at'] = datetime.now()
+                    kwargs['created_at'] = datetime.now()
             if '__class__' in kwargs:
                 del kwargs['__class__']
             self.__dict__.update(kwargs)

@@ -58,10 +58,10 @@ class Place(BaseModel, Base):
     def __get_amenities(self):
         """gets amenities associated with self"""
         from models import storage
-        from models.Amenity import Amenity
+        from models.amenity import Amenity
         lst = []
         for obj in storage.all(Amenity).values():
-            if obj.place_id == self.id:
+            if obj.id in self.amenity_ids:
                 lst.append(obj)
         return lst
 
