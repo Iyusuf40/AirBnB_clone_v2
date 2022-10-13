@@ -42,7 +42,7 @@ class Place(BaseModel, Base):
                              back_populates='place_amenities')
     amenity_ids = []
 
-    def get_reviews(self):
+    def __get_reviews(self):
         """returns a list of all reviews with place_id
         equal to self.id"""
         from models import storage
@@ -55,7 +55,7 @@ class Place(BaseModel, Base):
 
         return lst
 
-    def get_amenities(self):
+    def __get_amenities(self):
         """gets amenities associated with self"""
         from models import storage
         from models.Amenity import Amenity
@@ -65,7 +65,23 @@ class Place(BaseModel, Base):
                 lst.append(obj)
         return lst
 
-    def set_amenities(self, obj):
+    def __set_amenities(self, obj):
         """sets amenity associated with self"""
         if obj.__class__.__name__ == 'Amenity':
             self.amenity_ids.append(obj.id)
+
+    if storage_type != 'db':
+        @property
+        def reviews(self):
+            """returns reviews of a place"""
+            return self.__get_reviews()
+
+        @property
+        def amenities(self):
+            """returns amenities associated with place"""
+            return self.__get_amenities()
+
+        @amenities.setter
+        def amenities(self, obj):
+            """sets an amenity for a place"""
+            self.__set_amenities(obj)

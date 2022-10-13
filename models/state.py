@@ -13,7 +13,7 @@ class State(BaseModel, Base):
     cities = relationship('City', back_populates='state',
                           cascade="all, delete, delete-orphan")
 
-    def get_cities(self):
+    def __get_cities(self):
         """returns all City objects associated with self"""
         from models import storage
         from models.city import City
@@ -28,4 +28,4 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """returns get_cities"""
-            return self.get_cities()
+            return self.__get_cities()
