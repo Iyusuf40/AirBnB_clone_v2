@@ -69,6 +69,7 @@ class Place(BaseModel, Base):
         """sets amenity associated with self"""
         if obj.__class__.__name__ == 'Amenity':
             self.amenity_ids.append(obj.id)
+            self.save()
 
     if storage_type != 'db':
         @property
