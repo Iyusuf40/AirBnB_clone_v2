@@ -37,14 +37,25 @@ amenity_2.save()
 amenity_3 = Amenity(name="Oven")
 amenity_3.save()
 
-# link place_1 with 2 amenities
+# link place_1 with 2 amenities fot db storage
 place_1.amenities.append(amenity_1)
 place_1.amenities.append(amenity_2)
 
-# link place_2 with 3 amenities
+# link place_1 with 2 amenities fot file storage
+if storage_type != 'db':
+    place_1.amenities = amenity_1
+    place_1.amenities = amenity_2
+
+# link place_2 with 3 amenities for db storage
 place_2.amenities.append(amenity_1)
 place_2.amenities.append(amenity_2)
 place_2.amenities.append(amenity_3)
+
+# link place_2 with 3 amenities for file storage
+if storage_type != 'db':
+    place_2.amenities = amenity_1
+    place_2.amenities = amenity_2
+    place_2.amenities = amenity_3
 
 storage.save()
 
