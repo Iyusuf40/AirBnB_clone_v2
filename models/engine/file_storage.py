@@ -64,7 +64,6 @@ class FileStorage:
                 del self.all()[key]
             self.save()
 
-    # def close(self):
-        # """closes a session"""
-        # self.__objects = {}
-        # self.reload()
+    def close(self):
+        """closes a session"""
+        self.reload()
