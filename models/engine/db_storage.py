@@ -86,6 +86,7 @@ class DBStorage:
         global Session
         Session = scoped_session(session_factory)
         self.__session = Session()
+
     def close(self):
         """ removes the current session from scoped_session """
         self.__session.close()
