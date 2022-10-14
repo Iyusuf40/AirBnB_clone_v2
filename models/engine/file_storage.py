@@ -66,5 +66,5 @@ class FileStorage:
 
     def close(self):
         """closes a session"""
-        self.__objects = {}
+        self.save()
         self.reload()
