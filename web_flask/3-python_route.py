@@ -30,6 +30,12 @@ def c_route(text):
     Abort(404)
 
 
+@app.route('/python/', redirect_to='python/is_cool', strict_slashes=False)
+def python_re_route(text="is cool"):
+    """returns Python <text>"""
+    pass
+
+
 @app.route('/python/<text>', strict_slashes=False)
 def python_route(text="is cool"):
     """returns Python <text>"""
