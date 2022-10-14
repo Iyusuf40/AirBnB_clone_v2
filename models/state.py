@@ -28,5 +28,4 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """returns get_cities"""
-            return None
-            # return self.__get_cities()
+            return self.__get_cities()
