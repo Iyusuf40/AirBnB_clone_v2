@@ -63,3 +63,7 @@ class FileStorage:
             if key in self.all():
                 del self.all()[key]
             self.save()
+
+    def close(self):
+        """closes a session"""
+        self.reload()
