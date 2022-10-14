@@ -24,7 +24,7 @@ def hbnb():
 def c_route(text):
     """returns C <text>"""
     if (type(text) is str):
-        text.replace('_', ' ')
+        text = text.replace('_', ' ')
         return "C " + text
     from flask import Abort
     Abort(404)
