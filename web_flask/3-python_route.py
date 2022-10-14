@@ -30,7 +30,7 @@ def c_route(text):
     Abort(404)
 
 
-@app.route('/c/<text>', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def python_route(text="is cool"):
     """returns Python <text>"""
     text = text.replace('_', ' ')
