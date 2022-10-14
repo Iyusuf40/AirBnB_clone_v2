@@ -20,13 +20,14 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<string:text>', strict_slashes=False)
+@app.route('/c/<text>', strict_slashes=False)
 def c_route(text):
-    """returns C is <text>"""
-    if (text):
+    """returns C <text>"""
+    if (type(text) is str):
         text.replace('_', ' ')
         return "C " + text
-    return "C"
+    from flask import Abort
+    Abort(404)
 
 
 if __name__ == "__main__":
