@@ -5,6 +5,7 @@ from sqlalchemy import Integer, Column, String,\
     ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from models import storage_type
+from sqlalchemy.dialects.mysql import VARCHAR
 
 
 if storage_type == 'db':
@@ -17,9 +18,11 @@ if storage_type == 'db':
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
-    city_id = Column(String(60), ForeignKey("cities.id"),
+    city_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
+                     "mysql"), ForeignKey("cities.id"),
                      nullable=False)
-    user_id = Column(String(60), ForeignKey("users.id"),
+    user_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
+                     "mysql"), ForeignKey("users.id"),
                      nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024))

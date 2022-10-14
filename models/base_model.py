@@ -5,6 +5,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from models import storage_type
+from sqlalchemy.dialects.mysql import VARCHAR
 
 if storage_type == 'db':
     Base = declarative_base()
@@ -17,7 +18,8 @@ class BaseModel:
     """A base class for all hbnb models"""
 
     if storage_type == 'db':
-        id = Column(String(60), primary_key=True)
+        id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
+                    "mysql"), primary_key=True)
         created_at = Column(DateTime(), default=datetime.utcnow(),
                             nullable=False)
         updated_at = Column(DateTime(), default=datetime.utcnow(),

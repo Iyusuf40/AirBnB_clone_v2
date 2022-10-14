@@ -16,7 +16,7 @@ class DBStorage:
         host = os.getenv("HBNB_MYSQL_HOST")
         db = os.getenv("HBNB_MYSQL_DB")
         mode = os.getenv("HBNB_ENV")
-        db_url = f"mysql+mysqldb://{user}:{passwd}@{host}/{db}"
+        db_url = f"mysql+mysqldb://{user}:{passwd}@{host}/{db}?charset=latin1"
         self.__engine = create_engine(db_url, pool_pre_ping=True)
         if mode == "test":
             tables = ["users", "places", "states", "cities",
