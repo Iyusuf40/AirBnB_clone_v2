@@ -46,7 +46,7 @@ def python_route(text="is cool"):
 @app.route('/number/<int:n>', strict_slashes=False)
 def is_number(n):
     """checks if n is number"""
-    return f"{n} is number"
+    return str(n) + " is number"
 
 
 if __name__ == "__main__":
