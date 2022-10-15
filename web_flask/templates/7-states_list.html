@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+	<UL>
+		{% for tuple in states | dictsort(true, by='value') -%}
+		<LI>{{ tuple[0] }}: <B>{{ tuple[1] }}</B></LI>
+		{% endfor -%}
+	</UL>
+    </BODY>
+</HTML>
