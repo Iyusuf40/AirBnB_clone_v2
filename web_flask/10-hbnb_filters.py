@@ -15,14 +15,16 @@ def close_session(f):
     storage.close()
 
 
-@app.route('/cities_by_states', strict_slashes=False)
-def cities_of_a_state():
-    """ gets all the cities associated with a state from db """
+@app.route('/hbnb_filters', strict_slashes=False)
+def hbnb():
+    """ renders template with data from db """
     from models.state import State
-    dct = {}
+    from models.amenity import Amenity
     states = storage.all(State)
     states = [ obj for obj in states.values() ]
-    return render_template('8-cities_by_states.html', states=states)
+    amenities = storage.all(Amenity)
+    amenities = [ obj for obj in amenities.values() ]
+    return render_template('10-hbnb_filters.html', states=states, amenities=amenities)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,15 @@
+header {
+	background-color: #f00;
+	height: 70px;
+	width: 100%;
+}
+
+footer {
+	position: relative;
+	bottom: 0;
+	background-color: #0f0;
+	height: 70px;
+	width: 100%;
+	text-align: center;
+	line-height: 70px;
+}
