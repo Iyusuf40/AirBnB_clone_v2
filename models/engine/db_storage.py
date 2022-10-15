@@ -58,7 +58,9 @@ class DBStorage:
             except Exception:
                 pass
             for obj in list_of_obj:
-                dct[f"{cls_.__name__}.{obj.id}"] = obj
+                key = cls_.__name__ + "." + obj.id
+                # dct[f"{cls_.__name__}.{obj.id}"] = obj
+                dct[key] = obj
         return dct
 
     def new(self, obj):
