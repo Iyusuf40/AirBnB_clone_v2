@@ -21,10 +21,7 @@ def static_list():
     from models.state import State
     dct = {}
     states = storage.all(State)
-    for item in states:
-        key = item.split(".")[1]
-        dct[key] = states[item].name
-    return render_template('7-states_list.html', states=dct)
+    return render_template('7-states_list.html', states=states)
 
 
 if __name__ == '__main__':

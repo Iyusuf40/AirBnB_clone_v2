@@ -7,7 +7,13 @@
         <H1>States</H1>
 	<UL>
 		{% for tuple in states | dictsort(true, by='key') %}
-		<LI>{{ tuple[1].id }}: <B>{{ tuple[1].name }}</B></LI>
+		<LI>{{ tuple[1].id }}: <B>{{ tuple[1].name }}</B>
+			<UL>
+				{% for city in tuple[1].cities | sort(attribute='name') %}
+				<LI>{{city.id}}: <B>{{city.name}}</B></LI>
+				{% endfor %}
+			</UL>
+		</LI>
 		{% endfor %}
 	</UL>
     </BODY>
