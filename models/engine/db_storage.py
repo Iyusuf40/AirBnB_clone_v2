@@ -48,7 +48,9 @@ class DBStorage:
         if cls:
             list_of_obj = self.__session.query(cls).all()
             for obj in list_of_obj:
-                dct[f"{cls.__name__}.{obj.id}"] = obj
+                key = cls.__name__ + "." + obj.id
+                # dct[f"{cls.__name__}.{obj.id}"] = obj
+                dct[key] = obj
             return dct
 
         for cls_ in cls_dict.values():
