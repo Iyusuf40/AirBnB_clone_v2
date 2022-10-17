@@ -21,7 +21,7 @@ def static_list():
     from models.state import State
     dct = {}
     states = storage.all(State)
-    states = [ obj for obj in states.values() ]
+    states = [obj for obj in states.values()]
     return render_template('7-states_list.html', states=states)
 
 

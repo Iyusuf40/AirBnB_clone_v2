@@ -21,7 +21,7 @@ def cities_of_a_state():
     from models.state import State
     dct = {}
     states = storage.all(State)
-    states = [ obj for obj in states.values() ]
+    states = [obj for obj in states.values()]
     return render_template('8-cities_by_states.html', states=states)
 
 
