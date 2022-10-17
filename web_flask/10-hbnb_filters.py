@@ -21,10 +21,11 @@ def hbnb():
     from models.state import State
     from models.amenity import Amenity
     states = storage.all(State)
-    states = [ obj for obj in states.values() ]
+    states = [obj for obj in states.values()]
     amenities = storage.all(Amenity)
-    amenities = [ obj for obj in amenities.values() ]
-    return render_template('10-hbnb_filters.html', states=states, amenities=amenities)
+    amenities = [obj for obj in amenities.values()]
+    return render_template('10-hbnb_filters.html', states=states,
+                           amenities=amenities)
 
 
 if __name__ == '__main__':
