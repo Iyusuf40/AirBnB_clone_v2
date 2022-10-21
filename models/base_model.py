@@ -18,8 +18,8 @@ class BaseModel:
     """A base class for all hbnb models"""
 
     if storage_type == 'db':
-        id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                    "mysql"), primary_key=True)
+        id = Column(String(60, collation='latin1_swedish_ci'),
+                    primary_key=True)
         created_at = Column(DateTime(), default=datetime.utcnow(),
                             nullable=False)
         updated_at = Column(DateTime(), default=datetime.utcnow(),

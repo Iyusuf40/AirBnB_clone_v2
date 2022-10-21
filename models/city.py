@@ -11,8 +11,8 @@ class City(BaseModel, Base):
     __tablename__ = 'cities'
 
     name = Column(String(128), nullable=False)
-    state_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                      "mysql"), ForeignKey('states.id'),
+    state_id = Column(String(60, collation='latin1_swedish_ci'),
+                      ForeignKey('states.id'),
                       nullable=False)
     state = relationship('State', back_populates='cities')
     places = relationship('Place', back_populates='cities',

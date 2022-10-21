@@ -9,11 +9,11 @@ from sqlalchemy.dialects.mysql import VARCHAR
 class Review(BaseModel, Base):
     """ Review classto store review information """
     __tablename__ = 'reviews'
-    place_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                      "mysql"), ForeignKey('places.id'),
+    place_id = Column(String(60, collation='latin1_swedish_ci'),
+                      ForeignKey('places.id'),
                       nullable=False)
-    user_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                     "mysql"), ForeignKey('users.id'),
+    user_id = Column(String(60, collation='latin1_swedish_ci'),
+                     ForeignKey('users.id'),
                      nullable=False)
     text = Column(String(1024), nullable=False)
 

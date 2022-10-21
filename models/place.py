@@ -18,11 +18,11 @@ if storage_type == 'db':
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
-    city_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                     "mysql"), ForeignKey("cities.id"),
+    city_id = Column(String(60, collation='latin1_swedish_ci'),
+                     ForeignKey("cities.id"),
                      nullable=False)
-    user_id = Column(String(60).with_variant(VARCHAR(60, charset="latin1"),
-                     "mysql"), ForeignKey("users.id"),
+    user_id = Column(String(60, collation='latin1_swedish_ci'),
+                     ForeignKey("users.id"),
                      nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024))
