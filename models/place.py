@@ -11,17 +11,18 @@ from sqlalchemy.dialects.mysql import VARCHAR
 if storage_type == 'db':
     place_amenity = Table('place_amenity', Base.metadata,
                           Column('place_id', ForeignKey('places.id')),
-                          Column('amenity_id', ForeignKey('amenities.id'))
+                          Column('amenity_id', ForeignKey('amenities.id')),
+                          mysql_charset="latin1"
                           )
 
 
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
-    city_id = Column(String(60, collation='latin1_swedish_ci'),
+    city_id = Column(String(60),
                      ForeignKey("cities.id"),
                      nullable=False)
-    user_id = Column(String(60, collation='latin1_swedish_ci'),
+    user_id = Column(String(60),
                      ForeignKey("users.id"),
                      nullable=False)
     name = Column(String(128), nullable=False)
@@ -44,6 +45,9 @@ class Place(BaseModel, Base):
                              secondary='place_amenity',
                              back_populates='place_amenities')
     amenity_ids = []
+    __table_args__ = (
+            {'mysql_default_charset': 'latin1'}
+            )
 
     def __get_reviews(self):
         """returns a list of all reviews with place_id

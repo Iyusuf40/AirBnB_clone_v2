@@ -12,3 +12,6 @@ class Amenity(BaseModel, Base):
     place_amenities = relationship('Place',
                                    secondary='place_amenity',
                                    back_populates='amenities')
+    __table_args__ = (
+        {'mysql_default_charset': 'latin1'}
+        )

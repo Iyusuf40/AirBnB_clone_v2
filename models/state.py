@@ -12,6 +12,9 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship('City', back_populates='state',
                           cascade="all, delete, delete-orphan")
+    __table_args__ = (
+            {'mysql_default_charset': 'latin1'}
+            )
 
     def __get_cities(self):
         """returns all City objects associated with self"""

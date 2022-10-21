@@ -17,7 +17,7 @@ class DBStorage:
         db = os.getenv("HBNB_MYSQL_DB")
         mode = os.getenv("HBNB_ENV")
         db_url = "mysql+mysqldb://" + user + ":" + passwd + "@" + host + \
-                 "/" + db + "?charset=latin1"
+                 "/" + db
         # db_url = f"mysql+mysqldb://{user}:{passwd}@{host}/{db}?charset=\
         # latin1"
         self.__engine = create_engine(db_url, pool_pre_ping=True)
@@ -28,8 +28,8 @@ class DBStorage:
             post_drop = "SET FOREIGN_KEY_CHECKS=1;"
             with self.__engine.connect() as conn:
                 for table in tables:
-                    txt = f"{pre_drop}drop table if exists {table};\
-                            {post_drop}"
+                    txt = "{} drop table if exists {};\
+{}".format(pre_drop, table, post_drop)
                     conn.execute(text(txt))
 
     def all(self, cls=None):
