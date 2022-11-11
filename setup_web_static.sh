@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # installs nginx server
-echo "Hello World!" > /var/www/html/index.html
+sudo echo "Hello World!" > index.html
+sudo mv index.html /var/www/html/index.html
 sudo service nginx start
 
 hostname=$(hostname)
@@ -17,7 +18,8 @@ sites-available/default
 fi
 
 #create custom_404 page
-echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+echo "Ceci n'est pas une page" > index.html
+sudo mv index.html /var/www/html/custom_404.html
 
 isErrorPagePresent=$( grep error_page < /etc/nginx/sites-available/default | \
 cut -d " " -f1 ) 
